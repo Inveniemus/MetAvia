@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:metavia/blocs/weather/weather_bloc.dart';
+import 'package:metavia/cubit/weather_cubit.dart';
+import 'package:metavia/models/weather.dart';
 import 'package:metavia/pages/landing_page.dart';
 
 void main() {
@@ -17,13 +18,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MultiBlocProvider(
-        providers: <BlocProvider>[
-          BlocProvider<WeatherBloc>(
-            builder: (_) => WeatherBloc(),
-          )
-        ],
-        child: LandingPage(),
+      home: BlocProvider(
+          create: (_) => WeatherCubit(),
+          child: LandingPage()
       ),
     );
   }

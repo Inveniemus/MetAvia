@@ -41,7 +41,9 @@ class WeatherAPIHandler {
       var document = xml.parse(response.body);
       var rawText = document.findAllElements('raw_text').first.text;
       weather.metar = Metar(rawText);
-    } // todo: Error handling
+    } else {
+      // todo: Create a specific exception to handle any different status code.
+    }
 
     // 2. TAF
     _parameters['dataSource'] = 'tafs';
@@ -51,7 +53,9 @@ class WeatherAPIHandler {
       var document = xml.parse(response.body);
       var rawText = document.findAllElements('raw_text').first.text;
       weather.taf = Taf(rawText);
-    } // todo: Error handling
+    } else {
+      // todo: Create a specific exception to handle any different status code.
+    }
 
     print(weather);
     return weather;

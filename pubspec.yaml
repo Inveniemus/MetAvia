@@ -27,7 +27,8 @@ dependencies:
   # Xml package
   xml: ^3.6.1
   http: ^0.12.2
-  flutter_bloc: ^1.0.0
+  bloc: ^6.0.0
+  flutter_bloc: ^6.0.0
 
 dev_dependencies:
   flutter_test:
