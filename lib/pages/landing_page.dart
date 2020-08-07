@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:metavia/cubit/weather_cubit.dart';
+import 'package:metavia/widgets/weather_widgets.dart';
 
 class LandingPage extends StatelessWidget {
   @override
@@ -18,6 +19,9 @@ class LandingPage extends StatelessWidget {
               TextField(
                 decoration: InputDecoration(
                   hintText: 'ICAO code here',
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20))
+                  ),
                 ),
                 textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 30.0),
@@ -39,13 +43,13 @@ class LandingPage extends StatelessWidget {
                 },
                 builder: (context, state) {
                   if (state is WeatherLoading) {
-                    return CircularProgressIndicator();
+                    return LinearProgressIndicator();
                   } else if (state is WeatherLoaded) {
                     return Column(
                       children: <Widget>[
-                        Text(state.weather.metar.rawText, textScaleFactor: 1.5,),
+                        MetarWidget(state.weather.metar),
                         Divider(),
-                        Text(state.weather.taf.rawText, textScaleFactor: 1.5,),
+                        TafWidget(state.weather.taf),
                       ],
                     );
                   } else {
